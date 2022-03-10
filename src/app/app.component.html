@@ -3,10 +3,12 @@
     <p class="font-semibold text-gray-800">{{ name }}</p>
     <app-input [(value)]="task" placeholder="Enter Task Name"></app-input>
     <!-- Task List -->
-    <app-task-list
-      *ngFor="let todo of filterTaks"
-      [name]="todo.task"
-    ></app-task-list>
+    <div>
+      <app-task-list
+        *ngFor="let todo of filterTaks"
+        [name]="todo.task"
+      ></app-task-list>
+    </div>
     <div class="flex justify-end">
       <app-button (click)="setTask()">Add Task</app-button>
     </div>

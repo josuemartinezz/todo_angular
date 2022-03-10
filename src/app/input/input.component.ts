@@ -10,7 +10,7 @@ export class InputComponent implements OnInit {
   constructor() { }
 
   //Props
-  @Input() placeholder: string = 'Custom placeholder';
+  @Input() placeholder?: string;
   @Input() type?: string = 'text';
   @Input() value?: string;
   @Output() valueChange = new EventEmitter<string>();
