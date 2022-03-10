@@ -1,6 +1,16 @@
 <div class="h-screen flex items-center justify-center">
-  <app-input></app-input>
-  <app-button> Botón</app-button>
+  <section class="w-[25rem] gap-y-3 flex flex-col p-5 rounded-3xl shadow-2xl">
+    <p class="font-semibold text-gray-800">{{ name }}</p>
+    <app-input [(value)]="task" placeholder="Enter Task Name"></app-input>
+    <!-- Task List -->
+    <app-task-list
+      *ngFor="let todo of filterTaks"
+      [name]="todo.task"
+    ></app-task-list>
+    <div class="flex justify-end">
+      <app-button (click)="setTask()">Add Task</app-button>
+    </div>
+  </section>
 </div>
 
 <router-outlet></router-outlet>

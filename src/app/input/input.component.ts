@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.less']
 })
+
 export class InputComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  //Props
+  @Input() placeholder: string = 'Custom placeholder';
+  @Input() type?: string = 'text';
+  @Input() value?: string;
+  @Output() valueChange = new EventEmitter<string>();
 
+  ngOnInit(): void { }
 }
