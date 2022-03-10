@@ -63,12 +63,11 @@ export class AppComponent {
     { html: '0079BF', selected: false }
   ];
 
-  selectedColors: string[] = [];
   showColors() {
     this.isShowColors = !this.isShowColors;
   }
 
-  setColor(color: object) {
-    console.log(color)
+  setColor(c: any) {
+    this.colors = this.colors.map(color => color.html === c.html ? {...color, selected: !color.selected}: color);
   }
 }
