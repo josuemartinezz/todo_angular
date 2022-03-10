@@ -15,7 +15,7 @@ export class AppComponent {
   // Variables
   task: string = '';
   tasks = [
-    { id: 1, task: 'Test Task #1 💫', done: true, colors: [] },
+    { id: 1, task: 'Test Task #1 💫', done: true, colors: ['61BD4F', 'C377E0'] },
     { id: 2, task: 'Angular Learning 💡', done: false, colors: [] }
   ];
 
@@ -30,9 +30,10 @@ export class AppComponent {
       id: this.tasks.length + 1,
       task: this.task,
       done,
-      colors: []
+      colors: this.getColors
     })
     this.task = '';
+    this.colors = this.colors.map(color => ({...color, selected: false}));
   }
 
   /**
@@ -53,6 +54,9 @@ export class AppComponent {
   /* End of Task Logic 👌 */
 
   /* Colors logic */
+  get getColors() {
+    return this.colors.map((color: Colors) => color.selected ? color.html : '').filter(Boolean);
+  }
   isShowColors?: boolean = false;
   colors: Colors[] = [
     { html: '61BD4F', selected: false },
