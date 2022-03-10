@@ -8,15 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   name: string = 'Todo App';
 
-  filter?: 'all' | 'done' | 'pending' = 'all';
-
   // Variables
+  filter?: 'all' | 'done' | 'pending' = 'all';
   task: string = '';
   tasks = [
-    { id: 1, task: 'Task #1', done: false },
+    { id: 1, task: 'Task #1', done: true },
     { id: 2, task: 'Task #2', done: false }
   ];
 
+  // Methods
   get filterTaks() {
     if (this.filter === 'all') {
       return this.tasks;
@@ -26,10 +26,17 @@ export class AppComponent {
   }
 
   setTask(done: boolean = false) {
+    if (!this.task) return
     this.tasks.push({
       id: this.tasks.length + 1,
       task: this.task,
       done
     })
+    this.task = '';
+  }
+
+  changeStatus(event: any) {
+    console.log(event)
+    this.tasks = this.tasks.map(task => task.id === event.id ? {...task, done: !event.done}: task);
   }
 }

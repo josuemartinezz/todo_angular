@@ -5,8 +5,9 @@
     <!-- Task List -->
     <div>
       <app-task-list
-        *ngFor="let todo of filterTaks"
-        [name]="todo.task"
+        (changeStatus)="changeStatus($event)"
+        *ngFor="let task of filterTaks"
+        [task]="task"
       ></app-task-list>
     </div>
     <div class="flex justify-end">
