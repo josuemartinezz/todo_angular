@@ -1,9 +1,18 @@
 <div class="h-screen flex items-center justify-center">
   <section class="w-[25rem] gap-y-3 flex flex-col p-5 rounded-3xl shadow-2xl">
-    <p class="font-semibold text-gray-800">{{ name }}</p>
+    <p class="font-semibold text-gray-800">Todo App</p>
     <app-input [(value)]="task" placeholder="Enter Task Name"></app-input>
+    <div *ngIf="isShowColors" class="flex gap-2">
+      <div
+        (click)="setColor(color)"
+        [style]="'background-color: #' + color.html"
+        *ngFor="let color of colors"
+        class="h-6 aspect-square rounded-full bg-gray-300 cursor-pointer"
+      ></div>
+    </div>
+    <app-badge (click)="showColors()" content="Colors"></app-badge>
     <!-- Task List -->
-    <div>
+    <div class="max-h-[360px] overflow-auto">
       <app-task-list
         (edit)="editTask($event)"
         (delete)="deleteTask($event)"

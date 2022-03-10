@@ -8,6 +8,7 @@ import { ButtonComponent } from './button/button.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import { BadgeComponent } from './badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TaskListComponent } from './task-list/task-list.component';
     IconComponent,
     InputComponent,
     TaskListComponent,
+    BadgeComponent,
   ],
   imports: [
     BrowserModule,
