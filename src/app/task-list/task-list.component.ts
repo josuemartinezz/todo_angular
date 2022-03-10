@@ -1,22 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html'
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent {
 
   constructor() { }
 
   @Input() task: any = {};
-  @Output() changeStatus = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
   // Methods
-  onClick() {
-    this.changeStatus.emit(this.task);
+  onEdit() {
+    this.edit.emit(this.task);
   }
 
-  ngOnInit(): void {
+  onDelete() {
+    this.delete.emit(this.task);
   }
-
 }

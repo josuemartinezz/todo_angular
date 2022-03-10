@@ -5,8 +5,9 @@
     <!-- Task List -->
     <div>
       <app-task-list
-        (changeStatus)="changeStatus($event)"
-        *ngFor="let task of filterTaks"
+        (edit)="editTask($event)"
+        (delete)="deleteTask($event)"
+        *ngFor="let task of tasks"
         [task]="task"
       ></app-task-list>
     </div>

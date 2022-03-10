@@ -9,21 +9,11 @@ export class AppComponent {
   name: string = 'Todo App';
 
   // Variables
-  filter?: 'all' | 'done' | 'pending' = 'all';
   task: string = '';
   tasks = [
-    { id: 1, task: 'Task #1', done: true },
-    { id: 2, task: 'Task #2', done: false }
+    { id: 1, task: 'Test Task #1 💫', done: true },
+    { id: 2, task: 'Angular Learning 💡', done: false }
   ];
-
-  // Methods
-  get filterTaks() {
-    if (this.filter === 'all') {
-      return this.tasks;
-    } else {
-      return this.tasks.filter(task => task.done);
-    }
-  }
 
   setTask(done: boolean = false) {
     if (!this.task) return
@@ -35,8 +25,11 @@ export class AppComponent {
     this.task = '';
   }
 
-  changeStatus(event: any) {
-    console.log(event)
+  editTask(event: any) {
     this.tasks = this.tasks.map(task => task.id === event.id ? {...task, done: !event.done}: task);
+  }
+
+  deleteTask(event: any) {
+    this.tasks = this.tasks.filter(task => task.id !== event.id);
   }
 }
