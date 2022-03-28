@@ -4,13 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from './button/button.component';
-import { IconComponent } from './icon/icon.component';
-import { InputComponent } from './input/input.component';
-import { TaskListComponent } from './task-list/task-list.component';
-import { BadgeComponent } from './badge/badge.component';
+import { TaskListComponent } from './components/task/task-list/task-list.component';
 import { StoreModule } from '@ngrx/store';
 import { IndexComponent } from './pages/index/index.component';
+import { ButtonComponent } from './components/ui/button/button.component';
+import { IconComponent } from './components/ui/icon/icon.component';
+import { InputComponent } from './components/ui/input/input.component';
+import { BadgeComponent } from './components/ui/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -31,4 +31,5 @@ import { IndexComponent } from './pages/index/index.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
