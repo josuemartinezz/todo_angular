@@ -1,0 +1,43 @@
+<div class="h-screen flex items-center justify-center">
+  <section class="w-[25rem] gap-y-3 flex flex-col p-5 rounded-3xl shadow-2xl">
+    <p class="font-semibold text-gray-800">Todo App</p>
+    <app-input [(value)]="task" placeholder="Enter Task Name"></app-input>
+    <div *ngIf="isShowColors" class="flex gap-2">
+      <div
+        (click)="setColor(color)"
+        [style]="'background-color: #' + color.html"
+        *ngFor="let color of colors"
+        class="h-6 aspect-square rounded-full bg-gray-300 cursor-pointer text-white flex items-center justify-center"
+      >
+        <svg
+          *ngIf="color.selected"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      </div>
+    </div>
+    <app-badge (click)="showColors()" content="Colors"></app-badge>
+    <!-- Task List -->
+    <div class="max-h-[360px] overflow-auto">
+      <app-task-list
+        (edit)="editTask($event)"
+        (delete)="deleteTask($event)"
+        *ngFor="let task of tasks"
+        [task]="task"
+      ></app-task-list>
+    </div>
+    <div class="flex justify-end">
+      <app-button (click)="setTask()">Add Task -></app-button>
+    </div>
+  </section>
+</div>

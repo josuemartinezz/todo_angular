@@ -9,6 +9,8 @@ import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { BadgeComponent } from './badge/badge.component';
+import { StoreModule } from '@ngrx/store';
+import { IndexComponent } from './pages/index/index.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { BadgeComponent } from './badge/badge.component';
     InputComponent,
     TaskListComponent,
     BadgeComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
