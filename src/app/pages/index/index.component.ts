@@ -16,8 +16,7 @@ export class IndexComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   task: string = '';
   tasks: Array<Task> = [
@@ -63,6 +62,7 @@ export class IndexComponent implements OnInit {
   get getColors() {
     return this.colors.map((color: Colors) => color.selected ? color.html : '').filter(Boolean);
   }
+
   isShowColors?: boolean = false;
   colors: Colors[] = [
     { html: '61BD4F', selected: false },
