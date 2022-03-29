@@ -11,6 +11,9 @@ import { ButtonComponent } from './components/ui/button/button.component';
 import { IconComponent } from './components/ui/icon/icon.component';
 import { InputComponent } from './components/ui/input/input.component';
 import { BadgeComponent } from './components/ui/badge/badge.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { todoReducer } from './store/todo/todo.reducer';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { BadgeComponent } from './components/ui/badge/badge.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({
+      todo: todoReducer
+    }),
+    StoreDevtoolsModule.instrument({ name: 'debug', logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

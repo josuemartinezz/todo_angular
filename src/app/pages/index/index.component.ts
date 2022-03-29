@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Task } from 'src/app/models/task';
+import { addTask } from 'src/app/store/todo/todo.actions';
 
 // Types ✅
 type Colors = {
@@ -14,7 +16,7 @@ type Colors = {
 
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void { }
 
@@ -30,6 +32,9 @@ export class IndexComponent implements OnInit {
    * @param done - Task object to add.
    */
   setTask(done: boolean = false) {
+    let task: Task = { id: this.tasks.length + 1, task: this.task, done, colors: this.getColors };
+    this.store.dispatch(addTask(task));
+    return
     if (!this.task) return
     this.tasks.push({
       id: this.tasks.length + 1,
