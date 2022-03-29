@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Task } from 'src/app/models/task';
-import { addTask } from 'src/app/store/todo/todo.actions';
+import { addTask, deleteTask, editTask } from 'src/app/store/todo/todo.actions';
 
 // Types ✅
 type Colors = {
@@ -16,15 +16,17 @@ type Colors = {
 
 export class IndexComponent implements OnInit {
 
-  constructor(private store: Store<any>) { }
+  tasks: Array<Task> = [];
+
+  constructor(private store: Store<any>) {
+    store.select('todo').subscribe(({ tasks }) => {
+      this.tasks = tasks
+    })
+  }
 
   ngOnInit(): void { }
 
   task: string = '';
-  tasks: Array<Task> = [
-    { id: 1, task: 'Test Task #1 💫', done: true, colors: ['61BD4F', 'C377E0'] },
-    { id: 2, task: 'Angular Learning 💡', done: false, colors: [] }
-  ];
 
   /* Task Logic 👌 */
   /**
@@ -32,16 +34,10 @@ export class IndexComponent implements OnInit {
    * @param done - Task object to add.
    */
   setTask(done: boolean = false) {
+    if (!this.task) return;
     let task: Task = { id: this.tasks.length + 1, task: this.task, done, colors: this.getColors };
     this.store.dispatch(addTask(task));
-    return
-    if (!this.task) return
-    this.tasks.push({
-      id: this.tasks.length + 1,
-      task: this.task,
-      done,
-      colors: this.getColors
-    })
+
     this.task = '';
     this.colors = this.colors.map(color => ({...color, selected: false}));
   }
@@ -51,7 +47,7 @@ export class IndexComponent implements OnInit {
    * @param event - Task object to edit.
    */
   editTask(event: any) {
-    this.tasks = this.tasks.map(task => task.id === event.id ? {...task, done: !event.done}: task);
+    this.store.dispatch(editTask(event))
   }
 
   /**
@@ -59,7 +55,7 @@ export class IndexComponent implements OnInit {
    * @param event - Task object to delete.
    */
   deleteTask(event: any) {
-    this.tasks = this.tasks.filter(task => task.id !== event.id);
+    this.store.dispatch(deleteTask(event))
   }
   /* End of Task Logic 👌 */
 

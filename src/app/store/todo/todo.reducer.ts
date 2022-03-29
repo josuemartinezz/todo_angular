@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Task } from "src/app/models/task";
-import { addTask, retrieveTasks } from "./todo.actions";
+import { addTask, deleteTask, editTask, retrieveTasks } from "./todo.actions";
 
 export const initalState: { tasks: Array<Task>, loading: boolean } = {
   tasks: [
@@ -14,5 +14,13 @@ export const todoReducer = createReducer(
   initalState,
   on(addTask, (state, task) => {
     return { ...state, tasks: [...state.tasks, task] };
+  }),
+  on(editTask, (state, event: Task) => {
+    let tasks: Array<Task> = state.tasks.map(task => task.id === event.id ? {...task, done: !event.done}: task);
+    return { ...state, tasks: [ ...tasks ] }
+  }),
+  on(deleteTask, (state, event: Task) => {
+    let tasks: Array<Task> = state.tasks.filter(task => task.id !== event.id)
+    return { ...state, tasks: [ ...tasks ] }
   })
 );
