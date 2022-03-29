@@ -6,9 +6,11 @@
       <div
         (click)="onEdit()"
         [ngClass]="
-          task.done ? 'bg-[#2DEBC9] hover:bg-[#2DEBC9]/60' : 'hover:bg-gray-200'
+          task.done
+            ? 'bg-[#2DEBC9] hover:bg-[#2DEBC9]/60'
+            : 'hover:bg-gray-200 bg-gray-100'
         "
-        class="h-[1.5rem] aspect-square rounded-full bg-gray-100 text-white flex items-center justify-center"
+        class="h-[1.5rem] aspect-square rounded-full text-white flex items-center justify-center"
       >
         <svg
           *ngIf="task.done"
